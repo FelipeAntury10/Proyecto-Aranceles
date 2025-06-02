@@ -1,0 +1,394 @@
+﻿@page
+@model asp_presentacion.Pages.Ventanas.UsuariosModel
+@{
+    ViewData["Titulo"] = "Gestión de Usuarios";
+}
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #16a085;
+        --success-color: #27ae60;
+        --danger-color: #e74c3c;
+        --accent-color: #f39c12;
+        --light-bg: #f5f5f5;
+        --text-dark: #333;
+        --border-color: #ddd;
+    }
+
+    .container-main {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-left: 5px solid var(--primary-color);
+    }
+
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--secondary-color);
+    }
+
+    .section-title {
+        color: var(--primary-color);
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: all 0.3s;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-refresh {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .btn-new {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+    .btn-save {
+        background-color: var(--success-color);
+        color: white;
+    }
+
+    .btn-cancel {
+        background-color: var(--danger-color);
+        color: white;
+    }
+
+    .btn-edit {
+        background-color: var(--accent-color);
+        color: var(--text-dark);
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        opacity: 0.9;
+    }
+
+    .btn:disabled {
+        opacity: 0.6;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 400px;
+        padding: 8px 12px;
+        margin-bottom: 20px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table tr:hover {
+            background-color: rgba(22, 160, 133, 0.05);
+        }
+
+    .edit-panel {
+        margin: 20px 0;
+        padding: 20px;
+        background: var(--light-bg);
+        border-radius: 5px;
+        border-left: 4px solid var(--accent-color);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .form-label {
+        width: 150px;
+        margin-bottom: 5px;
+        font-weight: 500;
+        color: var(--primary-color);
+    }
+
+    .form-control, .form-select {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        max-width: 400px;
+    }
+
+    .confirmation-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 25px;
+        border-radius: 8px;
+        width: 500px;
+        max-width: 90%;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .no-action {
+        color: #777;
+        font-style: italic;
+    }
+
+    .password-field {
+        position: relative;
+    }
+
+    .password-toggle {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    @@media (max-width: 768px) {
+        .button-group {
+            flex-wrap: wrap;
+        }
+        
+        .form-group {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .form-label {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+        
+        .form-control, .form-select {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+</style>
+
+<div class="container-main">
+    <form method="POST" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="header-section">
+            <h1 class="section-title">
+                <i class="fas fa-users"></i> Gestión de Usuarios
+            </h1>
+        </div>
+
+        <div class="button-group">
+            <button type="submit"
+                   asp-page-handler="BtRefrescar"
+                   class="btn btn-refresh"
+                   disabled="@(Model.Accion != lib_dominio.Nucleo.Enumerables.Ventanas.Listas)">
+                <i class="fas fa-sync-alt"></i> Refrescar
+            </button>
+
+            <button type="submit"
+                   asp-page-handler="BtNuevo"
+                   class="btn btn-new"
+                   disabled="@(Model.Accion != lib_dominio.Nucleo.Enumerables.Ventanas.Listas)">
+                <i class="fas fa-plus"></i> Nuevo
+            </button>
+
+            <button type="submit"
+                   asp-page-handler="BtGuardar"
+                   class="btn btn-save"
+                   disabled="@(Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Listas)">
+                <i class="fas fa-save"></i> Guardar
+            </button>
+
+            <button type="submit"
+                   asp-page-handler="BtCancelar"
+                   class="btn btn-cancel"
+                   disabled="@(Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Listas)">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+        </div>
+
+        @if (Model.Accion != lib_dominio.Nucleo.Enumerables.Ventanas.Listas ||
+           Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
+        {
+            <input type="hidden" asp-for="@Model.Actual!.Id" />
+        }
+
+        @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
+        {
+            <input type="hidden" asp-for="@Model.Actual!.Cod" />
+            <input type="hidden" asp-for="@Model.Actual!.Id_Rol" />
+        }
+
+        @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Editar)
+        {
+            <div class="edit-panel">
+                <h3><i class="fas fa-edit"></i> Editar Usuario</h3>
+                <div class="form-group">
+                    <label class="form-label">Usuario</label>
+                    <input id="nmUsuario" class="form-control" asp-for="@Model.Actual!.Usuario" />
+                </div>
+                <div class="form-group password-field">
+                    <label class="form-label">Contraseña</label>
+                    <input id="nmContraseña" type="password" class="form-control" asp-for="@Model.Actual!.Contraseña" />
+                    <span class="password-toggle" onclick="togglePassword('nmContraseña')">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                @if (IndexModel.RolGlobal == "1")
+                {
+                    <div class="form-group">
+                        <label class="form-label">Rol</label>
+                        <select id="nmRoles" class="form-select" 
+                                asp-for="@Model.Actual!.Id_Rol"
+                                asp-items="@(new SelectList(Model.ListaRoles,"Id","Nombre"))">
+                        </select>
+                    </div>
+                }
+            </div>
+        }
+
+        @if (ViewData.ContainsKey("Mensaje"))
+        {
+            <input type="hidden" asp-for="@Model.Accion" />
+            @await Html.PartialAsync("../Emergentes/Mensajes.cshtml")
+        }
+
+        @if (Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar)
+        {
+            <div class="confirmation-modal">
+                <div class="modal-content">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Confirmar Eliminación</h3>
+                    <p>¿Está seguro que desea eliminar este usuario?</p>
+                    <p><strong>@Model.Actual!.Cod</strong></p>
+                    <div class="action-buttons">
+                        <button type="submit" asp-page-handler="BtBorrar" class="btn btn-cancel">
+                            <i class="fas fa-trash-alt"></i> Borrar
+                        </button>
+                        <button type="submit" asp-page-handler="BtCancelar" class="btn btn-new">
+                            <i class="fas fa-times"></i> Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if ((Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Listas ||
+           Model.Accion == lib_dominio.Nucleo.Enumerables.Ventanas.Borrar) && IndexModel.RolGlobal == "1")
+        {
+            <input id="flCod"
+                  class="search-input"
+                  asp-for="@Model.Filtro!.Cod"
+                  placeholder="Buscar por código..." />
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Lista != null)
+                    {
+                        @foreach (var elemento in Model.Lista)
+                        {
+                            <tr>
+                                <td>@elemento.Cod</td>
+                                <td>@(Model.ListaRoles.FirstOrDefault(p => p.Id == elemento.Id_Rol)?.Nombre ?? "N/A")</td>
+                                <td>
+                                    <button type="submit"
+                                           asp-page-handler="BtModificar"
+                                           class="btn btn-edit"
+                                           asp-route-data="@elemento.Id">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                    <button type="submit"
+                                           asp-page-handler="BtBorrarVal"
+                                           class="btn btn-cancel"
+                                           asp-route-data="@elemento.Id">
+                                        <i class="fas fa-trash-alt"></i> Borrar
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        }
+    </form>
+</div>
+
+<!-- Font Awesome para los iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<script>
+    function togglePassword(id) {
+        const input = document.getElementById(id);
+        const icon = input.nextElementSibling.querySelector('i');
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+</script>

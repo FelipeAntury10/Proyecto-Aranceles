@@ -1,0 +1,327 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Acceso al Sistema";
+}
+
+<style>
+    :root {
+        --primary-color: #2c3e50;
+        --secondary-color: #16a085;
+        --accent-color: #f39c12;
+        --light-bg: #f8f9fa;
+        --text-dark: #343a40;
+    }
+
+    /* Estilos para el contenedor de login */
+    .login-container {
+        display: flex;
+        min-height: 100vh;
+        background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+        background-size: cover;
+        position: relative;
+    }
+
+    /* Estilos para el contenedor post-login (con imagen diferente) */
+    .welcome-container-bg {
+        display: flex;
+        min-height: 100vh;
+        background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center;
+        background-size: cover;
+        position: relative;
+    }
+
+        .login-container::before,
+        .welcome-container-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.85);
+        }
+
+    .login-box {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        padding: 40px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-logo {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 15px;
+    }
+
+    .login-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+
+    .login-subtitle {
+        color: var(--secondary-color);
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+
+    .form-section {
+        margin-bottom: 40px;
+    }
+
+    .form-section-title {
+        color: var(--primary-color);
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--light-bg);
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        transition: all 0.3s;
+    }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(22, 160, 133, 0.2);
+        }
+
+    .btn-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+        flex: 1;
+        text-align: center;
+    }
+
+    .btn-clear {
+        background-color: #f8f9fa;
+        color: var(--text-dark);
+        border: 1px solid #ddd;
+    }
+
+        .btn-clear:hover {
+            background-color: #e9ecef;
+        }
+
+    .btn-enter {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+        .btn-enter:hover {
+            background-color: #138d75;
+            transform: translateY(-2px);
+        }
+
+    .btn-register {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+        .btn-register:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+
+    .welcome-title {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .btn-logout {
+        background-color: var(--accent-color);
+        color: white;
+        padding: 12px 30px;
+        margin-top: 30px;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+        .btn-logout:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+
+    .welcome-message {
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .success-message {
+        color: var(--secondary-color);
+        font-weight: 500;
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(22, 160, 133, 0.1);
+        border-radius: 6px;
+    }
+
+    @@media (max-width: 768px) {
+        .login-box {
+            padding: 30px 20px;
+            margin: 20px;
+        }
+
+        .btn-group {
+            flex-direction: column;
+        }
+    }
+</style>
+
+@if (!Model.EstaLogueado)
+{
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h2 class="login-title">Sistema de Aranceles</h2>
+                <p class="login-subtitle">Gestión de usuarios y permisos</p>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Acceso de usuarios</h3>
+                <form method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Usuario:</label>
+                        <input onchange="keyUp(this)"
+                               asp-for="@Model.Email"
+                               class="form-control"
+                               placeholder="Ingrese su correo electrónico" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Contraseña:</label>
+                        <input type="password"
+                               onchange="keyUp(this)"
+                               asp-for="@Model.Contra"
+                               class="form-control"
+                               placeholder="Ingrese su contraseña" />
+                    </div>
+
+                    <div class="btn-group">
+                        <input type="submit"
+                               value="Limpiar"
+                               asp-page-handler="BtClean"
+                               class="btn btn-clear" />
+                        <input type="submit"
+                               value="Entrar"
+                               asp-page-handler="BtEnter"
+                               class="btn btn-enter" />
+                    </div>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h3 class="form-section-title">Registro de nuevos usuarios</h3>
+                <form method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Nuevo Usuario:</label>
+                        <input onchange="keyUp(this)"
+                               asp-for="@Model.Email2"
+                               class="form-control"
+                               placeholder="Ingrese un correo electrónico válido" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nueva Contraseña:</label>
+                        <input type="password"
+                               onchange="keyUp(this)"
+                               asp-for="@Model.Contra2"
+                               class="form-control"
+                               placeholder="Cree una contraseña segura" />
+                    </div>
+
+                    <div class="btn-group">
+                        <input type="submit"
+                               value="Limpiar"
+                               asp-page-handler="BtClean2"
+                               class="btn btn-clear" />
+                        <input type="submit"
+                               value="Registrarse"
+                               asp-page-handler="BtEnter2"
+                               class="btn btn-register" />
+                    </div>
+                </form>
+
+                @if (IndexModel.Registrado)
+                {
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i> Registro realizado correctamente
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="welcome-container-bg">
+        <div class="login-box welcome-box">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-unlock-alt"></i>
+                </div>
+                <h2 class="login-title">¡Bienvenido al Sistema!</h2>
+            </div>
+
+            <p class="welcome-message">
+                Has iniciado sesión correctamente en el sistema de gestión de aranceles.
+                Ahora puedes acceder a todas las funcionalidades del sistema.
+            </p>
+
+            <form method="POST">
+                <button type="submit"
+                        asp-page-handler="BtClose"
+                        class="btn btn-logout">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+}
+
+<!-- Font Awesome para los iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
