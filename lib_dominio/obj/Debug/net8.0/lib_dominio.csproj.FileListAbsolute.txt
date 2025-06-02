@@ -1,0 +1,12 @@
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\bin\Debug\net8.0\lib_dominio.deps.json
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\bin\Debug\net8.0\lib_dominio.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\bin\Debug\net8.0\lib_dominio.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\lib_dominio.csproj.AssemblyReference.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\lib_dominio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\lib_dominio.AssemblyInfoInputs.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\lib_dominio.AssemblyInfo.cs
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\lib_dominio.csproj.CoreCompileInputs.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\lib_dominio.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\refint\lib_dominio.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\lib_dominio.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_dominio\obj\Debug\net8.0\ref\lib_dominio.dll
