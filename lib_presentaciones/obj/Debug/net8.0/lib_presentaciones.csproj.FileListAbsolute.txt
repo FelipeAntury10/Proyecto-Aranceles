@@ -1,0 +1,15 @@
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\bin\Debug\net8.0\lib_presentaciones.deps.json
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\bin\Debug\net8.0\lib_presentaciones.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\bin\Debug\net8.0\lib_presentaciones.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\bin\Debug\net8.0\lib_dominio.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\bin\Debug\net8.0\lib_dominio.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_presentaciones.csproj.AssemblyReference.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_presentaciones.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_presentaciones.AssemblyInfoInputs.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_presentaciones.AssemblyInfo.cs
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_presentaciones.csproj.CoreCompileInputs.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_pres.F3664F89.Up2Date
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_presentaciones.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\refint\lib_presentaciones.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\lib_presentaciones.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_presentaciones\obj\Debug\net8.0\ref\lib_presentaciones.dll
