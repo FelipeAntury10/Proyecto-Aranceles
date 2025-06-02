@@ -1,11 +1,7 @@
-﻿using asp_servicios.Controllers;
-using lib_aplicaciones.Implementaciones;
-using lib_aplicaciones.Interfaces;
-using lib_repositorios.Implementaciones;
-using lib_repositorios.Interfaces;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
+﻿using lib_presentaciones.Implementaciones;
+using lib_presentaciones.Interfaces;
 
-namespace asp_servicios
+namespace asp_presentacion
 {
     public class Startup
     {
@@ -18,54 +14,47 @@ namespace asp_servicios
 
         public void ConfigureServices(WebApplicationBuilder builder, IServiceCollection services)
         {
-            services.Configure<KestrelServerOptions>(x => { x.AllowSynchronousIO = true; });
-            services.Configure<IISServerOptions>(x => { x.AllowSynchronousIO = true; });
+            // Presentaciones
+            services.AddScoped<IPaisesPresentacion, PaisesPresentacion>();
+            services.AddScoped<IEmpresasPresentacion, EmpresasPresentacion>();
+            services.AddScoped<ITiposDeArancelesPresentacion, TiposDeArancelesPresentacion>();
+            services.AddScoped<ITiposDeProductosPresentacion, TiposDeProductosPresentacion>();
+            services.AddScoped<IProductosPresentacion, ProductosPresentacion>();
+            services.AddScoped<IOrdenesPresentacion, OrdenesPresentacion>();
+            services.AddScoped<IArancelesPresentacion, ArancelesPresentacion>();
+            services.AddScoped<IFacturasPresentacion, FacturasPresentacion>();
+            services.AddScoped<IRolesPresentacion, RolesPresentacion>();
+            services.AddScoped<IUsuariosPresentacion, UsuariosPresentacion>();
+            services.AddScoped<IAuditoriasPresentacion, AuditoriasPresentacion>();
+
+
+
+
+
+
+
+
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            //services.AddSwaggerGen();
-            // Repositorios
-            services.AddScoped<IConexion, Conexion>();
-            // Aplicaciones
-            services.AddScoped<IPaisesAplicacion, PaisesAplicacion>();
-            services.AddScoped<IEmpresasAplicacion, EmpresasAplicacion>();
-            services.AddScoped<ITiposDeArancelesAplicacion, TiposDeArancelesAplicacion>();
-            services.AddScoped<ITiposDeProductosAplicacion, TiposDeProductosAplicacion>();
-            services.AddScoped<IProductosAplicacion, ProductosAplicacion>();
-            services.AddScoped<IOrdenesAplicacion, OrdenesAplicacion>();
-            services.AddScoped<IArancelesAplicacion, ArancelesAplicacion>();
-            services.AddScoped<IFacturasAplicacion, FacturasAplicacion>();
-            services.AddScoped<IRolesAplicacion, RolesAplicacion>();
-            services.AddScoped<IUsuariosAplicacion, UsuariosAplicacion>();
-            services.AddScoped<IAuditoriasAplicacion, AuditoriasAplicacion>();
-
-
-
-
-
-
-
-
-            // Controladores
-            services.AddScoped<TokenController, TokenController>();
-
-            services.AddCors(o => o.AddDefaultPolicy(b => b.AllowAnyOrigin()));
+            services.AddRazorPages();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
         }
 
         public void Configure(WebApplication app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                //app.UseSwagger();
-                //app.UseSwaggerUI();
-            }
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Error");
             }
-            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseRouting();
             app.UseAuthorization();
-            app.MapControllers();
-            app.UseCors();
+            app.MapRazorPages();
+            app.UseSession();
+            app.Run();
         }
     }
 }
