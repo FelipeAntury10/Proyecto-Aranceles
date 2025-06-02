@@ -1,0 +1,15 @@
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\bin\Debug\net8.0\lib_repositorios.deps.json
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\bin\Debug\net8.0\lib_repositorios.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\bin\Debug\net8.0\lib_repositorios.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\bin\Debug\net8.0\lib_dominio.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\bin\Debug\net8.0\lib_dominio.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repositorios.csproj.AssemblyReference.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repositorios.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repositorios.AssemblyInfoInputs.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repositorios.AssemblyInfo.cs
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repositorios.csproj.CoreCompileInputs.cache
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repo.695687AF.Up2Date
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repositorios.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\refint\lib_repositorios.dll
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\lib_repositorios.pdb
+C:\Users\felip\OneDrive\Escritorio\ArancelesDef-master\ArancelesDef-master\lib_repositorios\obj\Debug\net8.0\ref\lib_repositorios.dll
